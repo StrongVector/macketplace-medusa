@@ -9,9 +9,9 @@
 /coverage
 
 # next.js
-# /frontend/.next
-# /frontend/.swc
-# /frontend/next-env.d.ts
+/frontend/.next
+/frontend/.swc
+/frontend/next-env.d.ts
 
 # distributable 
 /backend/dist
