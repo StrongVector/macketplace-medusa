@@ -1,0 +1,33 @@
+{
+	"extends": ["config:base", ":rebaseStalePrs", ":preserveSemverRanges"],
+	"schedule": "on friday and saturday",
+	"packageRules": [
+		{
+			"matchFiles": ["package.json"],
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"automerge": true,
+			"automergeType": "branch"
+		},
+		{
+			"matchDepTypes": ["devDependencies"],
+			"automerge": true,
+			"automergeType": "branch"
+		},
+        {
+            "description": "Disables the creation of branches/PRs for any minor/patch updates etc. of Renovate bot",
+            "matchPaths": ["renovate-update-notification/Dockerfile"],
+      
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest", "rollback"],
+            "enabled": false
+          },
+          {
+            "description": "Causes the bot to create a PR (and thus, an email notification), whenever there is a new major Renovate version",
+            "matchPaths": ["renovate-update-notification/Dockerfile"],
+            "matchUpdateTypes": ["major"],
+            "automerge": false,
+            "prCreation": "immediate"
+          }
+	],
+	"rollbackPrs": true,
+	"labels": ["dependencies"]
+}
